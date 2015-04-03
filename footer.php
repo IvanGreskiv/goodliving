@@ -7,7 +7,7 @@
   <div>
   <h3 class="hed3">Последние новости:</h3>
   
-<!--
+
 <div class="post-list post-grid post-blog loading">
   <?php query_posts('cat=14');?>
   <?php while ( have_posts() ) : the_post(); ?>

@@ -30,7 +30,7 @@
 			wp_dropdown_categories($dropdown_options);
     	?>
     </div>
-    <div class="input-select column col3">
+    <div class="input-select column col3" style="background-color:#f7f7f7">
       <?php
     	//property types drop down
     	if (isset($_GET['property_types'])) { $category_ID = $_GET['property_types']; } else { $category_ID = 0; }
@@ -52,7 +52,11 @@
 														);
 			wp_dropdown_categories($dropdown_options);?>
     </div>
-    <div class="column col5 alpha">
+    <div class="input-select column col4" >
+      <input type="text" class="max-price" id="max_price" name="price_max" data-max="<?php echo $max_price_properties;?>" placeholder="Введите максимальную цену" value="<?php if ( $price_max != '' ) { echo $price_max; } ?>">
+      
+    </div>
+    <div class="column col5 alpha" style="background-color:#f7f7f7" align="left">
       <?php
     	//property status drop down
     	if (isset($_GET['property_status_id'])) { $category_ID = $_GET['property_status_id']; } else { $category_ID = 0; }
@@ -74,7 +78,7 @@
 														);
 			wp_dropdown_categories($dropdown_options);?>
     </div>
-    <div class="input-select additional-field column col7">
+    <div class="input-select additional-field column col7" align="left">
 			<?php if (isset($_GET['no_garages'])) { $no_garages = $_GET['no_garages'];  } else { $no_garages = 'all';  } ?>
 			<?php if (isset($_GET['no_beds'])) { $no_beds = $_GET['no_beds'];  } else { $no_beds = 'all';  }  ?>
 			<?php if (isset($_GET['no_baths'])) { $no_baths = $_GET['no_baths'];  } else { $no_baths = 'all';  }  ?>
@@ -93,18 +97,12 @@
 				<?php }?>
 			</select>
 						
-			<select class="postform last" id="no_baths" name="no_baths">
-				<option <?php if ($no_baths == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_baths_long'), 'colabsthemes'); ?></option>
-				<?php foreach ($options_features_amount as $option) {?>
-					<option <?php if ($no_baths == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
-				<?php }?>
-			</select>	
+			
     </div>
 		<div class="clear"></div>
 
     <div class="advance-search-button">
-      <a href="#show" class="show button button-bold button-orange"><?php echo get_option('colabs_label_advanced_search');?></a>
-      <a href="#hide" class="hide button button-bold button-grey"><?php echo get_option('colabs_label_hide_advanced_search');?></a>
+      
     </div>
 		<div class="advance-search-extra clearfix">
 			<?php
