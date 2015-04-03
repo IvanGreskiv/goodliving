@@ -144,8 +144,14 @@
     </div><!-- .advance-search-extra -->
   </div>
 
+
+  
   <div class="column col2">
-    <input type="submit" value="Search" name="property-search-submit" class="button button-bold">
+  	<div style="width: 137px; height: 35px; background-color:#b3feac; border-radius:2px; background-image: url(but.png)">
+  	
+    <input type="submit" value="Search" name="property-search-submit" class="button button-bold" style="opacity:0">
+  	
+  	</div>
   </div>
 </form>
 </div><!-- #default-search -->
