@@ -1,0 +1,8 @@
+@media (max-width: 50%) {
+  div .iv1 {
+    display: none;
+  }
+  div .iv2 {
+  	display: none;
+  }
+}

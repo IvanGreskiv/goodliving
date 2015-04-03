@@ -1,0 +1,18 @@
+/*
+    Theme Name: GoodLiving
+    Theme URI: http://colorlabsproject.com/themes/goodliving/
+    Author: ColorLabs & Company
+    Author URI: http://colorlabsproject.com
+    Release Date: 19 April 2013
+    Designer: Andre Septian
+    Designer URI: http://about.me/andreseptian
+    Requirements: WordPress 3.0 or higher, PHP 5
+    Compatibility: WordPress 3.3.1
+    Tags: green, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, custom-menu, editor-style, featured-images, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready
+    Last Update Date: 19 April 2013
+*/
+
+/**** Changelog ****/
+
+2013.04.19 - Version 1.0.0
+ First release!
