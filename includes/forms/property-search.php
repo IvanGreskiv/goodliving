@@ -30,7 +30,7 @@
 			wp_dropdown_categories($dropdown_options);
     	?>
     </div>
-    <div class="input-select column col3" style="background-color:#f7f7f7">
+    <div class="input-select column col3" style="background-color:#f7f7f7" align="left">
       <?php
     	//property types drop down
     	if (isset($_GET['property_types'])) { $category_ID = $_GET['property_types']; } else { $category_ID = 0; }
@@ -83,12 +83,7 @@
 			<?php if (isset($_GET['no_beds'])) { $no_beds = $_GET['no_beds'];  } else { $no_beds = 'all';  }  ?>
 			<?php if (isset($_GET['no_baths'])) { $no_baths = $_GET['no_baths'];  } else { $no_baths = 'all';  }  ?>
 			<?php $options_features_amount = array("0","1","2","3","4","5","6","7","8","9","10+"); ?>
-			<select class="postform" id="no_garages" name="no_garages">
-				<option <?php if ($no_garages == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_garages'), 'colabsthemes'); ?></option>
-				<?php foreach ($options_features_amount as $option) {?>
-					<option <?php if ($no_garages == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
-				<?php }?>
-			</select>
+			
 						
 			<select class="postform" id="no_beds" name="no_beds">
 				<option <?php if ($no_beds == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_beds'), 'colabsthemes'); ?></option>
@@ -97,7 +92,12 @@
 				<?php }?>
 			</select>
 						
-			
+			<select class="postform last" id="no_baths" name="no_baths">
+				<option <?php if ($no_baths == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_baths_long'), 'colabsthemes'); ?></option>
+				<?php foreach ($options_features_amount as $option) {?>
+					<option <?php if ($no_baths == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
+				<?php }?>
+			</select>	
     </div>
 		<div class="clear"></div>
 
