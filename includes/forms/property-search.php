@@ -1,16 +1,36 @@
 <div id="default-search">
-<form class="advance-search clearfix" name="property-search" id="property-search" method="get"  action="<?php bloginfo('url'); ?>/">
+<form class="advance-search clearfix" name="property-search" id="property-search" method="get" action="<?php bloginfo('url'); ?>/">
   <div class="column col10">
 		<?php
 	  if (isset($_GET['s'])) { $keyword = strip_tags($_GET['s']);  } else { $keyword = '';  }
 		if ( $keyword == 'Your Keywords' ) { $keyword = ''; }
 	  ?>
-    <div class="input-text column col5 input-search" style="">
+    <div class="input-text column col5 input-search">
 			<input type="text" name="s" value="<?php if ( $keyword != '' ) { echo $keyword; } ?>" placeholder="<?php _e(get_option('colabs_search_keyword_text'), 'colabsthemes'); ?>">
 		</div>
-    
-<div class="input-select column col3" style="background-color:#f7f7f7">
-
+    <div class="input-select column col4">
+      <?php
+    	//property locations drop down
+    	if (isset($_GET['location_names'])) { $category_ID = $_GET['location_names']; } else { $category_ID = 0; }
+      if ($category_ID <= 0) {
+				$category_ID = 0;
+      }
+      $dropdown_options = array	(	
+            								'show_option_all'	=> __(get_option('colabs_label_locations_dropdown_view_all')), 
+            								'hide_empty' 			=> 0, 
+            								'hierarchical' 		=> 1,
+														'show_count' 			=> 0, 
+														'orderby' 				=> 'name',
+														'name' 						=> 'location_names',
+														'id' 							=> 'location_names',
+														'taxonomy' 				=> 'property_location', 
+														'hide_if_empty'		=> 1,
+														'selected' 				=> $category_ID
+														);
+			wp_dropdown_categories($dropdown_options);
+    	?>
+    </div>
+    <div class="input-select column col3">
       <?php
     	//property types drop down
     	if (isset($_GET['property_types'])) { $category_ID = $_GET['property_types']; } else { $category_ID = 0; }
@@ -32,16 +52,7 @@
 														);
 			wp_dropdown_categories($dropdown_options);?>
     </div>
-
-
-    <div class="input-select column col4" >
-      <input type="text" class="max-price" id="max_price" name="price_max" data-max="<?php echo $max_price_properties;?>" placeholder="Введите максимальную цену" value="<?php if ( $price_max != '' ) { echo $price_max; } ?>">
-      
-    </div>
-    
-
-    <div class="column col5 alpha" style="background-color:#f7f7f7" align="left">
-
+    <div class="column col5 alpha">
       <?php
     	//property status drop down
     	if (isset($_GET['property_status_id'])) { $category_ID = $_GET['property_status_id']; } else { $category_ID = 0; }
@@ -63,35 +74,37 @@
 														);
 			wp_dropdown_categories($dropdown_options);?>
     </div>
-
-    <div class="input-select additional-field column col7" align="left" >
-
+    <div class="input-select additional-field column col7">
 			<?php if (isset($_GET['no_garages'])) { $no_garages = $_GET['no_garages'];  } else { $no_garages = 'all';  } ?>
 			<?php if (isset($_GET['no_beds'])) { $no_beds = $_GET['no_beds'];  } else { $no_beds = 'all';  }  ?>
 			<?php if (isset($_GET['no_baths'])) { $no_baths = $_GET['no_baths'];  } else { $no_baths = 'all';  }  ?>
 			<?php $options_features_amount = array("0","1","2","3","4","5","6","7","8","9","10+"); ?>
-			
+			<select class="postform" id="no_garages" name="no_garages">
+				<option <?php if ($no_garages == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_garages'), 'colabsthemes'); ?></option>
+				<?php foreach ($options_features_amount as $option) {?>
+					<option <?php if ($no_garages == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
+				<?php }?>
+			</select>
 						
-			<select style="background:#777; color:#fff" id="no_baths">
+			<select class="postform" id="no_beds" name="no_beds">
 				<option <?php if ($no_beds == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_beds'), 'colabsthemes'); ?></option>
 				<?php foreach ($options_features_amount as $option) {?>
 					<option <?php if ($no_beds == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
 				<?php }?>
 			</select>
-		    	
-			<select class="postform last" id="no_baths" name="no_baths" style="background-color:#f7f7f7">
+						
+			<select class="postform last" id="no_baths" name="no_baths">
 				<option <?php if ($no_baths == 'all') { ?>selected="selected"<?php }?> value="all"><?php _e(get_option('colabs_label_baths_long'), 'colabsthemes'); ?></option>
 				<?php foreach ($options_features_amount as $option) {?>
 					<option <?php if ($no_baths == $option) { ?>selected="selected"<?php }?> value="<?php echo $option; ?>"><?php echo $option; ?></option>
 				<?php }?>
 			</select>	
-
-
     </div>
 		<div class="clear"></div>
 
     <div class="advance-search-button">
-      
+      <a href="#show" class="show button button-bold button-orange"><?php echo get_option('colabs_label_advanced_search');?></a>
+      <a href="#hide" class="hide button button-bold button-grey"><?php echo get_option('colabs_label_hide_advanced_search');?></a>
     </div>
 		<div class="advance-search-extra clearfix">
 			<?php
@@ -134,8 +147,7 @@
   </div>
 
   <div class="column col2">
-  
-    <input type="submit" value="Поиск" name="property-search-submit" class="button button-bold">
+    <input type="submit" value="Search" name="property-search-submit" class="button button-bold">
   </div>
 </form>
 </div><!-- #default-search -->
